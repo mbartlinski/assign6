@@ -2,7 +2,28 @@
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+    //if low is greater than high, value is not included
+    if(low > high){
+        return -1;
+    }
+	//find middle index
+    int mid = (low + high)/2;
+
+    //if the middle index is the value, return index
+    if(numbers[mid] == value){
+        return mid;
+    }
+
+    //if middle index is greater than value, search the lower half
+    if(numbers[mid] > value){
+        return search(numbers, low, mid-1, value);
+    }
+
+    //if middle index is smaller than value, search the upper half
+    if(numbers[mid] < value){
+        return search(numbers, high, mid + 1, value);
+    }
+
 }
 
 void printArray(int numbers[], int sz)
@@ -28,7 +49,7 @@ int main(void)
 	FILE* inFile = fopen("input.txt","r");
 
 	fscanf(inFile, " %d\n", &numInputs);
-	
+
 	while (numInputs-- > 0)
 	{
 		fscanf(inFile, " %d\n", &countOfNums);
@@ -57,4 +78,3 @@ int main(void)
 	}
 
 	fclose(inFile);
-}
