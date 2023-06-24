@@ -21,7 +21,7 @@ int search(int numbers[], int low, int high, int value)
 
     //if middle index is smaller than value, search the upper half
     if(numbers[mid] < value){
-        return search(numbers, high, mid + 1, value);
+        return search(numbers, mid + 1, high, value);
     }
 
 }
